@@ -10,7 +10,7 @@ const oldStandard = Old_Standard_TT({
 })
 
 export const metadata: Metadata = {
-  title: "DevDock",
+  title: "DevDock - Share Your Creation to the world",
   description: "Welcome aboard DevDock — where every project finds its harbor.",
 };
 
