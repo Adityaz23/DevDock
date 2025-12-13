@@ -31,7 +31,7 @@ const StatsData = [
     icon: UserCircle,
     value: "5K",
     label:"Active Creators!",
-    hasBorder: true,
+    hasBorder: true, 
   },
    {
     icon: EyeIcon,
