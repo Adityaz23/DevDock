@@ -34,7 +34,7 @@ const featured = [
         name: "Kitty-Kat",
         description: "A website to find friend for your kiity!",
         tags:["AI","NextJS","TailwindCSS"],
-        isFeatured: true,
+        isFeatured: false,
         votes: 600
     }
 ]

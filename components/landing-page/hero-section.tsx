@@ -11,8 +11,8 @@ const LiveBadge = () => {
       className="px-4 py-2 mb-6 mr-2 text-sm backdrop-blur-sm font-semibold bg-transaparent border-x-fuchsia-500 border-y-rose-300"
     >
       <span className="relative flex h-2 w-2 ">
-        <span className="animate-ping absolute inline-flex items-center h-full w-full rounded-full bg-rose-500 opacity-75 size-0.5" />
-        <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-400" />
+        <span className="animate-ping absolute inline-flex items-center h-full w-full rounded-full bg-rose-300 opacity-75 size-0.5" />
+        <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-200" />
       </span>
 
       <span className="text-shadow-muted-foreground">
