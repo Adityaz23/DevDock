@@ -10,16 +10,20 @@ import { Badge } from "../ui/badge";
 import { ChevronDownIcon, ChevronUpIcon, StarIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
+import { InferSelectModel } from "drizzle-orm";
+import { products } from "@/db/schema";
 
-// Creating the type for our featured product
-interface Product {
-  id: number;
-  name: string;
-  description: string;
-  tags: string[];
-  votes: number;
-  isFeatured: boolean;
-}
+// // Creating the type for our featured product
+// interface Product {
+//   id: number;
+//   name: string;
+//   description: string;
+//   tags: string[];
+//   votes: number;
+//   isFeatured: boolean;
+// }
+
+type Product = InferSelectModel<typeof products>;
 
 export default function ProductCard({ product }: { product: Product }) {
   const hasVoted = false;
@@ -30,14 +34,14 @@ export default function ProductCard({ product }: { product: Product }) {
           className="group card-hover transition-all duration-200 ease-out hover:shadow-xl
     hover:-translate-y-1 hover:bg-primary-foreground/20 border-solid border-gray-500 min-h-[180px] relative"
         >
-          <CardHeader className="flex-1">
+          <CardHeader className="grid grid-cols-[1fr_auto] gap-4">
             <div className="flex items-start gap-4">
               <div className="felx-1 min-w-0">
                 <div className="flex items-center gap-2">
                   <CardTitle className="text-lg group-hover:text-white transition-colors">
                     {product.name}
                   </CardTitle>
-                  {product.isFeatured && (
+                  {product.voteCount > 10 && (
                     <Badge
                       variant="outline"
                       className="bg-linear-to-r from-rose-300 to-orange-200 gap-1"
@@ -47,7 +51,7 @@ export default function ProductCard({ product }: { product: Product }) {
                     </Badge>
                   )}
                 </div>
-                <CardDescription className="font-bold text-gray-600">
+                <CardDescription className="font-bold text-gray-600 lg:text-sm gap-1">
                   {product.description}
                 </CardDescription>
               </div>
@@ -66,7 +70,7 @@ export default function ProductCard({ product }: { product: Product }) {
                   <ChevronUpIcon className="size-4" />
                 </Button>
                 <span className="text-xs font-semibold transition-colors text-foreground">
-                  10
+                  {product.voteCount}
                 </span>
 
                 <Button
@@ -86,7 +90,7 @@ export default function ProductCard({ product }: { product: Product }) {
           </CardHeader>
           <CardFooter>
             <div className="flex items-center gap-2 ">
-              {product.tags.map((tag) => (
+              {product.tags?.map((tag) => (
                 <Badge
                   key={tag}
                   variant="secondary"
