@@ -71,7 +71,7 @@ export default function Hero() {
                 size="lg"
                 className="text-base px-8 shadow-lg  bg-rose-200 hover:bg-red-300 hover:text-white"
               >
-                <Link href="/submit">
+                <Link href="/explore">
                   Explore projects
                   <ArrowRightToLine className="size-4" />
                 </Link>

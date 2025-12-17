@@ -21,26 +21,24 @@ async function main() {
 
   // Insert products
   for (const product of allProducts) {
-    await db.insert(products).values({
-      name: product.name,
-      slug: product.slug,
-      tagline: product.tagline,
-      description: product.description,
-
-      // ⚠️ column name must match schema exactly
-      websiteUrl: product.websiteUrl,
-
-      tags: product.tags,
-      voteCount: product.voteCount ?? 0,
-      createdAt: product.createdAt,
-      approvedAt: product.approvedAt,
-      status: product.status,
-      submittedBy: product.submittedBy,
-
-      // include these if they exist in schema
-      userId: product.userId,
-      organizationId: product.organizationId,
-    });
+    await db
+      .insert(products)
+      .values({
+        name: product.name,
+        slug: product.slug,
+        tagline: product.tagline,
+        description: product.description,
+        websiteUrl: product.websiteUrl,
+        tags: product.tags,
+        voteCount: product.voteCount ?? 0,
+        createdAt: product.createdAt,
+        approvedAt: product.approvedAt,
+        status: product.status,
+        submittedBy: product.submittedBy,
+        userId: product.userId,
+        organizationId: product.organizationId,
+      })
+      .onConflictDoNothing();
 
     console.log(
       `Added product: ${product.name} (${product.voteCount ?? 0}) votes`

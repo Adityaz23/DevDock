@@ -3,6 +3,7 @@
 
 export const allProducts = [
   {
+    id:1,
     name: "Modern Full Stack Next.js Course",
     slug: "modern-full-stack-nextjs-course",
     tagline: "Learn to build modern full stack applications with Next.js",
@@ -13,13 +14,14 @@ export const allProducts = [
     voteCount: 120,
     createdAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
     approvedAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
-    status: "approved",
+    status: "approved" as const,
     submittedBy: "john@example.com",
     userId: "user_123456",
     organizationId: "org_nextjs_course",
   },
 
   {
+    id:2,
     name: "TaskFlow Pro",
     slug: "taskflow-pro",
     tagline: "Manage projects like never before",
@@ -30,13 +32,14 @@ export const allProducts = [
     voteCount: 85,
     createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
     approvedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
-    status: "approved",
+    status: "approved" as const,
     submittedBy: "jane@example.com",
     userId: "user_789012",
     organizationId: "org_taskflow",
   },
 
   {
+    id:3,
     name: "UI Spark",
     slug: "ui-spark",
     tagline: "Beautiful UI components for modern apps",
@@ -47,13 +50,14 @@ export const allProducts = [
     voteCount: 42,
     createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
     approvedAt: null,
-    status: "pending",
+    status: "pending" as const,
     submittedBy: "alex@example.com",
     userId: "user_456789",
     organizationId: null,
   },
 
   {
+    id:4,
     name: "API Watch",
     slug: "api-watch",
     tagline: "Monitor your APIs with confidence",
@@ -64,7 +68,24 @@ export const allProducts = [
     voteCount: 63,
     createdAt: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000),
     approvedAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
-    status: "approved",
+    status: "approved" as const,
+    submittedBy: "sam@example.com",
+    userId: "user_112233",
+    organizationId: "org_apiwatch",
+  },
+    {
+    id:5,
+    name: "Dorium",
+    slug: "dorium-react-estate",
+    tagline: "Real Estate mobile app.",
+    description:
+      "This is the mobile application for the real estate.",
+    websiteUrl: "https://apiwatch.dev",
+    tags: ["API", "Monitoring", "Backend", "DevOps"],
+    voteCount: 340,
+    createdAt: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000),
+    approvedAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
+    status: "approved" as const,
     submittedBy: "sam@example.com",
     userId: "user_112233",
     organizationId: "org_apiwatch",
