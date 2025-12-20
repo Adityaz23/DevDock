@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/common/header";
 import Footer from "@/components/common/footer";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Suspense } from "react";
 
 const oldStandard = Old_Standard_TT({
   weight: ["400", "700"],
@@ -28,9 +29,13 @@ export default function RootLayout({
         <body
           className={`${oldStandard.className} ${oldStandard.className} antialiased`}
         >
-          <Header />
+          <Suspense>
+            <Header />
+          </Suspense>
           {children}
-          <Footer />
+          <Suspense>
+            <Footer />
+          </Suspense>
         </body>
       </html>
     </ClerkProvider>

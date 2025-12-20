@@ -11,6 +11,7 @@ import {
   SignUpButton,
   UserButton,
 } from "@clerk/nextjs";
+import { Suspense } from "react";
 
 const Logo = () => {
   return (
@@ -53,37 +54,39 @@ export default function Header() {
             </Link>
           </nav>
           <div className="flex items-center gap-3">
-            <SignedOut>
-              <SignInButton>
+            <Suspense fallback={<div>Loading....</div>}>
+              <SignedOut>
+                <SignInButton>
+                  <Button
+                    variant="ghost"
+                    className="flex items-center px-2 py-3 hover:text-foreground transition-colors text-sm font-sans text-primary hover:bg-muted/45 hover:bg-linear-to-tr from-indigo-300 to-purple-100 border border-primary rounded-md"
+                  >
+                    <button className="hover:cursor-pointer">Sign In</button>
+                  </Button>
+                </SignInButton>
+                <SignUpButton>
+                  <Button
+                    variant="ghost"
+                    className="flex items-center px-2 py-3 hover:text-foreground transition-colors text-sm font-sans text-primary hover:bg-muted/45 hover:bg-linear-to-tl from-indigo-100 to-purple-300 border border-primary rounded-md"
+                  >
+                    <button className="hover:cursor-pointer">Sign Up</button>
+                  </Button>
+                </SignUpButton>
+              </SignedOut>
+              <SignedIn>
                 <Button
-                  variant="ghost"
-                  className="flex items-center px-2 py-3 hover:text-foreground transition-colors text-sm font-sans text-primary hover:bg-muted/45 hover:bg-linear-to-tr from-indigo-300 to-purple-100 border border-primary rounded-md"
+                  asChild
+                  className="hover:bg-linear-to-tl from-blue-200 to-pink-200 hover:text-primary bg-white text-primary font-bold"
                 >
-                  <button className="hover:cursor-pointer">Sign In</button>
+                  <Link href="/submit">
+                    <SparklesIcon className="size-4" />
+                    Submit Project
+                  </Link>
                 </Button>
-              </SignInButton>
-              <SignUpButton>
-                <Button
-                  variant="ghost"
-                  className="flex items-center px-2 py-3 hover:text-foreground transition-colors text-sm font-sans text-primary hover:bg-muted/45 hover:bg-linear-to-tl from-indigo-100 to-purple-300 border border-primary rounded-md"
-                >
-                  <button className="hover:cursor-pointer">Sign Up</button>
-                </Button>
-              </SignUpButton>
-            </SignedOut>
-            <SignedIn>
-              <Button
-                asChild
-                className="hover:bg-linear-to-tl from-blue-200 to-pink-200 hover:text-primary bg-white text-primary font-bold"
-              >
-                <Link href="/submit">
-                  <SparklesIcon className="size-4" />
-                  Submit Project
-                </Link>
-              </Button>
-              {/* Replace the user icon with the clerk user. */}
-              <UserButton />
-            </SignedIn>
+                {/* Replace the user icon with the clerk user. */}
+                <UserButton />
+              </SignedIn>
+            </Suspense>
           </div>
         </div>
       </div>

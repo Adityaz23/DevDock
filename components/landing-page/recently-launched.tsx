@@ -15,7 +15,7 @@ export default async function RecentlyLaunched() {
           description="Discover the latest product on DevDock."
         />
         {recentlyLaunchedProduct.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 font-bold text-primary">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 font-bold ">
             {recentlyLaunchedProduct.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
