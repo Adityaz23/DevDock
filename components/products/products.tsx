@@ -29,7 +29,7 @@ export default function ProductCard({ product }: { product: Product }) {
   const hasVoted = false;
   return (
     <div>
-      <Link href={`/products${product.id}`}>
+      <Link href={`/products/${product.id}`}>
         <Card
           className="group card-hover transition-all duration-200 ease-out hover:shadow-xl
     hover:-translate-y-1 hover:bg-primary-foreground/20 border-solid border-gray-500 min-h-[180px] relative"

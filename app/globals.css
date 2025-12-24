@@ -116,12 +116,12 @@
   * {
     @apply border-border outline-ring/50;
   }
- body {
-  background: radial-gradient(
-      rgba(161, 131, 194, 0.65),
-      rgba(134, 104, 147, 0.9),
-      #e088ca
-    );
+body {
+  background: linear-gradient(
+    #b497cd,
+    #af90b9,
+    #e7a7d0
+  );
   min-height: 100vh;
 }
 
