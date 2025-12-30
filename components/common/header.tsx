@@ -48,7 +48,7 @@ export default function Header() {
       <div className="px-12 mx-auto sm:px-4 lg:px-8">
         <div className="flex h-16 justify-between items-center">
           <Logo />
-          <nav className="flex items-center gap-2">
+          <nav className="items-center gap-2 hidden sm:flex">
             <Link
               href="/"
               className="flex items-center gap-2 px-2 py-3 hover:text-foreground transition-colors text-sm font-serif  text-primary/90 hover:bg-muted/40 hover:bg-linear-to-bl from-blue-200 to-pink-200 border-transparent rounded-sm"
@@ -94,14 +94,14 @@ export default function Header() {
                 <SignedIn>
                   <Button
                     asChild
-                    className="hover:bg-linear-to-tl from-blue-200 to-pink-200 hover:text-primary bg-white text-primary font-bold"
+                    className="ml-2 px-2 py-2 text-xs font-semibold hover:bg-linear-to-tl from-blue-200 to-pink-200 hover:text-primary bg-white text-primary"
                   >
                     <Link href="/submit">
-                      <SparklesIcon className="size-4" />
-                      Submit Project
+                      <SparklesIcon className="size-3" />
+                      <span className="ml-1">Submit Project</span>
                     </Link>
                   </Button>
-                  {/* Replace the user icon with the clerk user. */}
+
                   <UserButton />
                 </SignedIn>
               </TestDelay>

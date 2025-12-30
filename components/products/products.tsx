@@ -89,12 +89,12 @@ export default function ProductCard({ product }: { product: Product }) {
             </div>
           </CardHeader>
           <CardFooter>
-            <div className="flex items-center gap-2 ">
+            <div className="mt-2 flex flex-wrap gap-2">
               {product.tags?.map((tag) => (
                 <Badge
                   key={tag}
                   variant="secondary"
-                  className="bg-linear-to-l from-blue-300 to-fuchsia-300 text-zinc-800 items-center"
+                  className="shrink-0 bg-linear-to-l from-blue-300 to-fuchsia-300 text-zinc-800"
                 >
                   {tag}
                 </Badge>
