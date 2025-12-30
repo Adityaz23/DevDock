@@ -1,5 +1,5 @@
 "use server";
-import {auth} from "@clerk/nextjs/server"
+import { auth } from "@clerk/nextjs/server";
 type FormState = {
   success: boolean;
   errors?: Record<string, string[]>;
@@ -12,14 +12,23 @@ export const addProductAction = async (
 ) => {
   console.log(formData);
   //Authenticating is the user is authenticated to submit the product or not ?
-  try{
+  try {
+    const { userId } = await auth();
 
-  }catch(error){
-    console.error(error)
+    if (!userId) {
+      return {
+        success: false,
+        message: "You must be signed in to submit a product!",
+      };
+    }
+
+  } catch (error) {
+    console.error(error);
+
+    return {
+      success: false,
+      errors: error instanceof Error ? error.message : String(error),
+      message: "Failed to add product.",
+    };
   }
-  return {
-    success: false,
-    errors: error,
-    message: "Failed to add product.",
-  };
 };
