@@ -3,7 +3,7 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 import { productSchema } from "./product-validate";
 import { db } from "@/db/seed";
 import { products } from "@/db/schema";
-import z from "zod";
+import z, { success } from "zod";
 type FormState = {
   success: boolean;
   errors?: Record<string, string[]>;
@@ -16,13 +16,20 @@ export const addProductAction = async (
 ) => {
   console.log(formData);
   //Authenticating is the user is authenticated to submit the product or not ?
+  // The organization id already exist in the clerk auth.
   try {
-    const { userId } = await auth();
+    const { userId, orgId } = await auth();
     console.log("USER ID:", userId);
     if (!userId) {
       return {
         success: false,
         message: "You must be signed in to submit a product!",
+      };
+    }
+    if (!orgId) {
+      return {
+        success: false,
+        message: "You must be a member of organization to submit a product.",
       };
     }
 
@@ -59,25 +66,25 @@ export const addProductAction = async (
       websiteUrl,
       status: "pending",
       submittedBy: userEmail,
-      organizationId: "", // we will put the logged in user to the organization would be able to create the products. We will create the organization id to the user in the proxy.ts file so it will be validate to those who are logged in.
-      userId:"",
+      organizationId: orgId, // we will put the logged in user to the organization would be able to create the products. We will create the organization id to the user in the proxy.ts file so it will be validate to those who are logged in.
+      userId: "",
     });
 
     return {
       success: true,
-      message: "Product submitted successfully! It will be approved shortly!"
-    }
+      message: "Product submitted successfully! It will be approved shortly!",
+    };
 
     // transforming the data :-
   } catch (error) {
     console.error(error);
 
-    if(error instanceof z.ZodError){
-      return{
+    if (error instanceof z.ZodError) {
+      return {
         success: false,
         errors: error.flatten().fieldErrors,
-        message: "Failed to submit product."
-      }
+        message: "Failed to submit product.",
+      };
     }
 
     return {
