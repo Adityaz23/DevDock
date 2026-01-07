@@ -1,23 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
-import {
-  CompassIcon,
-  HomeIcon,
-  LoaderIcon,
-  SparklesIcon,
-  UserIcon,
-} from "lucide-react";
+import { HomeIcon, LoaderIcon, SparklesIcon, CompassIcon } from "lucide-react";
 import { Button } from "../ui/button";
-import {
-  SignedIn,
-  SignedOut,
-  SignIn,
-  SignInButton,
-  SignUp,
-  SignUpButton,
-  UserButton,
-} from "@clerk/nextjs";
+import { SignedIn, SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
 import { Suspense } from "react";
+import CustomUserButton from "./custom-user-button";
 
 const Logo = () => {
   return (
@@ -102,7 +89,7 @@ export default function Header() {
                     </Link>
                   </Button>
 
-                  <UserButton />
+                  <CustomUserButton />
                 </SignedIn>
               </TestDelay>
             </Suspense>
