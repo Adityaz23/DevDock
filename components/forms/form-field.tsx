@@ -13,7 +13,7 @@ interface FormFiledProps {
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLTextAreaElement>
   ) => void;
-  error?: string;
+  error?: string[];
   helperText?: string;
   textarea?: boolean;
 }
@@ -56,7 +56,7 @@ export default function FormField({
       {helperText && (
         <p className="text-xs text-muted-foreground">{helperText}</p>
       )}
-      {error && <p className="text-sm text-destructive">{error}</p>}
+      {error && <p className="text-sm text-destructive">{error.join(", ")}</p>}
     </div>
   );
 }

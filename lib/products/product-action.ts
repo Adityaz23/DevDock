@@ -4,11 +4,7 @@ import { productSchema } from "./product-validate";
 import { db } from "@/db/seed";
 import { products } from "@/db/schema";
 import z, { success } from "zod";
-type FormState = {
-  success: boolean;
-  errors?: Record<string, string[]>;
-  message: string;
-};
+import { FormState } from "@/types";
 
 export const addProductAction = async (
   prevState: FormState,
@@ -87,9 +83,12 @@ export const addProductAction = async (
       };
     }
 
+    // ✅ ALWAYS return errors as Record<string, string[]>
     return {
       success: false,
-      errors: error instanceof Error ? error.message : String(error),
+      errors: {
+        _form: [error instanceof Error ? error.message : String(error)],
+      },
       message: "Failed to add product.",
     };
   }
