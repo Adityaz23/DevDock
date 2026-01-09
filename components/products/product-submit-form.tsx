@@ -26,7 +26,7 @@ export default function SubmitProductForm() {
         </div>
       }
     >
-      <form className="space-y-6" action={formAction} noValidate>
+      <form className="space-y-6" action={formAction}>
         {message && (
           <div
             className={cn(
@@ -48,7 +48,7 @@ export default function SubmitProductForm() {
           placeholder="My Awesome Project"
           required
           onChange={() => {}}
-          error={errors?.name}
+          error={errors?.name || []}
         ></FormField>
         <FormField
           label="slug"
@@ -57,7 +57,7 @@ export default function SubmitProductForm() {
           placeholder="my-awesome-project"
           required
           onChange={() => {}}
-          error={errors?.slug}
+          error={errors?.slug || []}
           // the helper text ->
           helperText="URL friendly version for your porject slug."
         ></FormField>
@@ -68,7 +68,7 @@ export default function SubmitProductForm() {
           placeholder="A brief description about your project."
           required
           onChange={() => {}}
-          error={errors?.tagline}
+          error={errors?.tagline || []}
         ></FormField>
         <FormField
           label="Description"
@@ -77,7 +77,7 @@ export default function SubmitProductForm() {
           placeholder="Tell us more about your project."
           required
           onChange={() => {}}
-          error={errors?.description}
+          error={errors?.description || []}
           textarea
           helperText="Explain what your project does basically."
         ></FormField>
@@ -88,7 +88,7 @@ export default function SubmitProductForm() {
           placeholder="https://yourproduct.com"
           required
           onChange={() => {}}
-          error={errors?.websiteUrl}
+          error={errors?.websiteUrl || []}
           helperText="Enter your project website url or landing page."
         ></FormField>
         <FormField
@@ -98,7 +98,7 @@ export default function SubmitProductForm() {
           placeholder="Docker, CI/CD pipelines, TailwindCSS etc...."
           required
           onChange={() => {}}
-          error={errors?.tags}
+          error={errors?.tags || []}
           helperText="Comma seprated tags (Nextjs,React,Redux)"
         ></FormField>
         <Button type="submit" size="lg" className="w-full">
