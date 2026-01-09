@@ -32,7 +32,7 @@ export default function ProductCard({ product }: { product: Product }) {
       <Link href={`/products/${product.id}`}>
         <Card
           className="group card-hover transition-all duration-200 ease-out hover:shadow-xl
-    hover:-translate-y-1 hover:bg-primary-foreground/20 border-solid border-gray-500 min-h-[180px] relative"
+    hover:-translate-y-1 hover:bg-primary-foreground/20 border-solid border-gray-500 min-h-[200px] relative"
         >
           <CardHeader className="grid grid-cols-[1fr_auto] gap-4">
             <div className="flex items-start gap-4">

@@ -2,13 +2,13 @@ import React, { TextareaHTMLAttributes } from "react";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
-interface FormFiledProps {
+interface FormFieldProps {
   label: string;
   id: string;
   name: string;
   placeholder?: string;
-  required: boolean;
-  onChange: (
+  required?: boolean; // often not needed if using HTML validation
+  onChange?: (
     e:
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLTextAreaElement>
@@ -21,26 +21,26 @@ interface FormFiledProps {
 export default function FormField({
   label,
   id,
+  name,
   placeholder,
   required,
   onChange,
-  name,
   error,
   helperText,
   textarea,
-}: FormFiledProps) {
+}: FormFieldProps) {
   return (
     <div className="space-y-2">
-      <Label htmlFor={id}>{label}</Label>
+      <Label htmlFor={id}>
+        {label} {required && <span className="text-destructive">*</span>}
+      </Label>
       {textarea ? (
         <Textarea
           id={id}
           name={name}
           placeholder={placeholder}
           required={required}
-          onChange={
-            onChange as (e: React.ChangeEvent<HTMLTextAreaElement>) => void
-          }
+          onChange={onChange as any} // or properly type if used
         />
       ) : (
         <Input
@@ -48,15 +48,15 @@ export default function FormField({
           name={name}
           placeholder={placeholder}
           required={required}
-          onChange={
-            onChange as (e: React.ChangeEvent<HTMLInputElement>) => void
-          }
+          onChange={onChange as any}
         />
       )}
       {helperText && (
         <p className="text-xs text-muted-foreground">{helperText}</p>
       )}
-      {error && <p className="text-sm text-destructive">{error.join(", ")}</p>}
+      {error?.length ? (
+        <p className="text-sm text-destructive">{error.join(", ")}</p>
+      ) : null}
     </div>
   );
 }

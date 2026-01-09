@@ -1,5 +1,7 @@
+import { ProductFormErrors } from "@/lib/products/product-validate";
+
 export type FormState = {
   success: boolean;
-  errors?: Record<string, string[]>;
   message: string;
+  errors?: ProductFormErrors;
 };
