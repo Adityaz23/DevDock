@@ -5,6 +5,7 @@ import { db } from "@/db/seed";
 import { products } from "@/db/schema";
 import z, { success } from "zod";
 import { FormState } from "@/types";
+import { eq, sql } from "drizzle-orm";
 
 export const addProductAction = async (
   prevState: FormState,
@@ -87,6 +88,87 @@ export const addProductAction = async (
       errors: {
         _form: ["An unexpected error occurred."],
       },
+    };
+  }
+};
+
+// Now, creating a function for the upvote action :-
+
+export const voteProductAction = async (productId: number) => {
+  try {
+    // before user can vote we need to check if the user is authenticated or not.
+    const { userId, orgId } = await auth();
+    if (!userId) {
+      console.log("User not authenticated: ", userId);
+      return {
+        success: false,
+        message: "You must be signed in to vote!",
+      };
+    }
+    if (!orgId) {
+      console.log("USer not a part of organization:", orgId);
+      return {
+        success: false,
+        message: "You must be a part of an organization to vote!",
+      };
+    }
+    // if the user is authenticated then we can proceed with the voting logic.
+    // We will increment the vote count of the product with the given productId.
+    await db
+      .update(products)
+      .set({
+        voteCount: sql`GREATEST(0, ${products.voteCount} + 1)`,
+      })
+      .where(eq(products.id, productId));
+    return {
+      success: true,
+      message: "Vote recorded successfully!",
+    };
+  } catch (error) {
+    console.error("Voting error: ", error);
+    return {
+      success: false,
+      message: "Something went wrong while voting. Please try again!",
+      voteCount: 0,
+    };
+  }
+};
+
+// Now for the downlvoting action we can create a similar function as above.
+export const downVoteAction = async (productId: number) => {
+  try {
+    const { userId, orgId } = await auth();
+    if (!userId) {
+      console.log("User not authenticated: ", userId);
+      return {
+        success: false,
+        message: "You must be signed in to downvote!",
+      };
+    }
+    if (!orgId) {
+      console.log("User not a part of organization: ", orgId);
+      return {
+        success: false,
+        message: "You must be a part of an organization to downvote!",
+      };
+    }
+    // same logic as upvoting but we will decrement the vote count.
+    await db
+      .update(products)
+      .set({
+        voteCount: sql`GREATEST(0, ${products.voteCount} - 1)`,
+      })
+      .where(eq(products.id, productId));
+    return {
+      success: true,
+      message: "Downvote recorded successfully!",
+    };
+  } catch (error) {
+    console.error("Downvoting error: ", error);
+    return {
+      success: false,
+      message: "Something went wrong while downvoting. Please try again!",
+      voteCount: 0,
     };
   }
 };
