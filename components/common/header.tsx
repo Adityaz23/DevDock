@@ -32,6 +32,7 @@ export default function Header() {
   const isSigned = false;
   return (
     <header className="sticky top-0 z-50 border-b border-fuchsia-200 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/30">
+      <Suspense fallback={<div>Loading..</div>}>
       <div className="px-12 mx-auto sm:px-4 lg:px-8">
         <div className="flex h-16 justify-between items-center">
           <Logo />
@@ -96,6 +97,7 @@ export default function Header() {
           </div>
         </div>
       </div>
+      </Suspense>
     </header>
   );
 }
