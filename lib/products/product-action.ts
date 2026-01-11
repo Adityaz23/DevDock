@@ -3,9 +3,10 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 import { productSchema } from "./product-validate";
 import { db } from "@/db/seed";
 import { products } from "@/db/schema";
-import z, { success } from "zod";
+import z from "zod";
 import { FormState } from "@/types";
 import { eq, sql } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
 
 export const addProductAction = async (
   prevState: FormState,
@@ -39,7 +40,7 @@ export const addProductAction = async (
       return {
         success: false,
         message: "Please fix the errors below",
-        errors: fieldErrors, // No cast needed — TS knows it's ProductFormErrors
+        errors: fieldErrors,
       };
     }
 
@@ -64,9 +65,9 @@ export const addProductAction = async (
       status: "pending",
       submittedBy: userEmail,
       organizationId: orgId,
-      userId: userId, // you had "" before — better to use actual userId
+      userId: userId,
     });
-
+    // refresh();
     return {
       success: true,
       message: "Product submitted successfully! It will be approved shortly!",
@@ -120,6 +121,8 @@ export const voteProductAction = async (productId: number) => {
         voteCount: sql`GREATEST(0, ${products.voteCount} + 1)`,
       })
       .where(eq(products.id, productId));
+    // refresh(); // to refresh the cache and show updated vote count.
+    revalidatePath("/"); // revalidating the home page to show updated vote count.
     return {
       success: true,
       message: "Vote recorded successfully!",
@@ -159,6 +162,7 @@ export const downVoteAction = async (productId: number) => {
         voteCount: sql`GREATEST(0, ${products.voteCount} - 1)`,
       })
       .where(eq(products.id, productId));
+    revalidatePath("/"); // revalidating the home page to show updated vote count.
     return {
       success: true,
       message: "Downvote recorded successfully!",
