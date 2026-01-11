@@ -1,28 +1,51 @@
 "use client";
-import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
+import { ChevronDownIcon, ChevronUpIcon, Loader2Icon } from "lucide-react";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import {
   downVoteAction,
   voteProductAction,
 } from "@/lib/products/product-action";
+import { startTransition, useOptimistic, useTransition } from "react";
 export default function VotingButtons({
   hasVoted,
-  voteCount,
+  voteCount: initialVoteCount,
   productId,
 }: {
   hasVoted: boolean;
   voteCount: number;
   productId: number;
 }) {
+  // to get rid of the ui update lag we can use the react hook optimistic which will update the ui immediately.
+
+  const [optimisticVoteCount, setOptimisticVoteCount] = useOptimistic(
+    initialVoteCount,
+    (currentCount, change: number) => Math.max(0, currentCount + change)
+  );
+
+  // An optimistic state update occurred outside a transition or action. To fix, move the update to an action, or wrap with startTransition
+  // This is the error which we are getting to get rid ig this we need to use the other react hook called startTransition  :-
+
+  const [isPending, setTransition] = useTransition();
+
   const handleUpvote = async () => {
-    const result = await voteProductAction(productId);
-    console.log("Vote result: ", result);
+    // wrapping the optimistic update inside the startTransition function.
+    startTransition(async () => {
+      setOptimisticVoteCount(1); // incrementing the vote count optimistically.
+      await voteProductAction(productId);
+    });
+
+    // console.log("Vote result: ", result);
   };
   const handleDownVote = async () => {
-    const result = await downVoteAction(productId);
-    console.log("Downvote result: ", result);
+    // wrapping the optimistic update inside the startTransition function.
+    startTransition(async () => {
+      setOptimisticVoteCount(-1); // decrementing the vote count optimistically.
+      await downVoteAction(productId);
+    });
+    // console.log("Downvote result: ", result);
   };
+
   return (
     <div
       className="absolute right-4 top-1/4 -translate-y-0.5 flex flex-col items-center gap-1"
@@ -35,6 +58,7 @@ export default function VotingButtons({
         onClick={handleUpvote}
         variant="ghost"
         size="icon-sm"
+        disabled={isPending}
         className={cn(
           "h-8 w-8 text-primary",
           hasVoted
@@ -45,13 +69,21 @@ export default function VotingButtons({
         <ChevronUpIcon className="size-4" />
       </Button>
       <span className="text-xs font-semibold transition-colors text-foreground">
-        {voteCount}
+        {/* Now, we will show some UI until the transtion completes. */}
+        {isPending ? (
+          <span>
+            <Loader2Icon className="size-4 animate-spin" />
+          </span>
+        ) : (
+          optimisticVoteCount
+        )}
       </span>
 
       <Button
         onClick={handleDownVote}
         variant="ghost"
         size="icon-sm"
+        disabled={isPending}
         className={cn(
           "h-8 w-8 text-primary",
           hasVoted
