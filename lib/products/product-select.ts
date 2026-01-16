@@ -4,28 +4,23 @@ import { desc, eq } from "drizzle-orm";
 import { connection } from "next/server";
 
 export async function getFeaturedProducts() {
-  "use cache";
-  const productsData = await db
+  return db
     .select()
     .from(products)
     .where(eq(products.status, "approved"))
     .orderBy(desc(products.createdAt));
-
-  return productsData;
 }
 export async function getAllProducts() {
-  const productsData = await db
+  return db
     .select()
     .from(products)
     .where(eq(products.status, "approved"))
-    .orderBy(desc(products.createdAt));
-
-  return productsData;
+    .orderBy(desc(products.voteCount)).limit(8);
 }
 
-export async function getRecetnlyLaunedProduct() {
+export async function getRecentlyLaunedProduct() {
   await connection(); // this is the api request which will just let us get the products on the runtime.
-  await new Promise((r) => setTimeout(r,3000));
+  await new Promise((r) => setTimeout(r, 3000));
   const productData = await getAllProducts();
   const oneWeekAgo = new Date();
   oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
@@ -34,4 +29,12 @@ export async function getRecetnlyLaunedProduct() {
       product.createdAt &&
       new Date(product.createdAt.toISOString()) >= oneWeekAgo
   );
+}
+
+export async function getProductBySlug(slug: string) {
+  const product = await db
+    .select()
+    .from(products)
+    .where(eq(products.slug, slug));
+    return product?.[0] || null;
 }

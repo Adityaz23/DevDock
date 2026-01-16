@@ -2,10 +2,10 @@ import { CalendarIcon, RocketIcon } from "lucide-react";
 import FeaturedHeader from "../common/common-header";
 import ProductCard from "../products/products";
 import EmptyRecently from "../common/empty-state";
-import { getRecetnlyLaunedProduct } from "@/lib/products/product-select";
+import { getRecentlyLaunedProduct } from "@/lib/products/product-select";
 
 export default async function RecentlyLaunched() {
-  const recentlyLaunchedProduct = await getRecetnlyLaunedProduct();
+  const recentlyLaunchedProduct = await getRecentlyLaunedProduct();
   return (
     <section className="py-20">
       <div className="mx-auto px-4 sm:px-4 lg:px-8">

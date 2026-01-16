@@ -6,7 +6,6 @@ import { Suspense } from "react";
 
 export default function CustomUserButton() {
   return (
-    <Suspense fallback={<div>Loadingg......</div>}>
       <UserButton>
         <UserButton.UserProfilePage
           label="Organizations"
@@ -28,6 +27,5 @@ export default function CustomUserButton() {
           </div>
         </UserButton.UserProfilePage>
       </UserButton>
-    </Suspense>
   );
 }

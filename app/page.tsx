@@ -8,13 +8,11 @@ const page = () => {
   return (
     <>
       <Hero />
-      <Featured />
+      <Suspense fallback={<ProductSkeleton />}>
+        <Featured />
+      </Suspense>
 
-      <Suspense
-        fallback={
-          <ProductSkeleton />
-        }
-      >
+      <Suspense fallback={<ProductSkeleton />}>
         <RecentlyLaunched />
       </Suspense>
     </>
