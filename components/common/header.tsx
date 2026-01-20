@@ -17,7 +17,7 @@ const Logo = () => {
         className="rounded"
       />
       <span className="text-xl font-bold ">
-        Dev<span className="text-indigo-600">Do</span>ck
+        Dev<span className="text-pink-600">Do</span>ck
       </span>
     </Link>
   );
