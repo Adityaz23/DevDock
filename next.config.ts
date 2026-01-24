@@ -1,9 +1,12 @@
 import type { NextConfig } from "next";
 
+const isDev = process.env.NODE_ENV === "development";
+
 const nextConfig: NextConfig = {
-  /* config options here */
-  cacheComponents:true, // now we have enabled the chached components of our project.
-  reactCompiler: true
+  experimental: {
+    cacheComponents: !isDev, // ❌ dev | ✅ prod
+  },
+  reactCompiler: true,
 };
 
 export default nextConfig;

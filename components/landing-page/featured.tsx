@@ -42,12 +42,12 @@ import { getFeaturedProducts } from "@/lib/products/product-select";
 
 export default async function Featured() {
   // fetching the data from the database of drizzle which we literally just generated.
-  const featured = await getFeaturedProducts()
+const featured = (await getFeaturedProducts()) ?? []
   return (
     <section className="py-20 bg-muted/20">
       <div className="mx-auto px-4 sm:px-4 lg:px-8">
         <div className="flex items-center justify-between mb-8">
-        <FeaturedHeader title="Featued This Week!" icon={StarIcon} description="This week hot products!"/>
+        <FeaturedHeader title="Featured This Week!" icon={StarIcon} description="This week hot products!"/>
       <Button variant="outline" asChild className="hidden sm:flex text-rose-100 hover:from-red-300 hover:to-yellow-200 bg-linear-to-r from-fuchsia-400 to-pink-300 border-red-300"><Link href="/explore">
       View All
       <ArrowUpRightIcon className="size-4"/>

@@ -12,7 +12,7 @@ export default function VotingButtons({
   voteCount: initialVoteCount,
   productId,
 }: {
-  hasVoted: boolean;
+  hasVoted?: boolean;
   voteCount: number;
   productId: number;
 }) {
@@ -48,7 +48,7 @@ export default function VotingButtons({
 
   return (
     <div
-      className="absolute right-4 top-1/4 -translate-y-0.5 flex flex-col items-center gap-1"
+      className="flex flex-col items-center gap-1"
       onClick={(e) => {
         e.preventDefault();
         e.stopPropagation();
