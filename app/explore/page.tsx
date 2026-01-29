@@ -1,8 +1,10 @@
 import FeaturedHeader from "@/components/common/common-header";
 import ProductExplorer from "@/components/products/productExplorer";
+import { getAllProducts } from "@/lib/products/product-select";
 import { CompassIcon } from "lucide-react";
 
-export default function ExplorePage() {
+export default async function ExplorePage() {
+  const products = await getAllProducts();
   return (
     <div className="py-20">
       <div className="px-12 mx-auto sm:px-4 lg:px-8">
@@ -14,7 +16,7 @@ export default function ExplorePage() {
           />
         </div>
         {/* Creating the new product explorer component. */}
-        <ProductExplorer />
+        <ProductExplorer products={products} />
       </div>
     </div>
   );
