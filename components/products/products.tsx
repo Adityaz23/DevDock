@@ -12,6 +12,7 @@ import { StarIcon } from "lucide-react";
 import { InferSelectModel } from "drizzle-orm";
 import { products } from "@/db/schema";
 import VotingButtons from "./voting-buttons";
+import { ProductType } from "@/types";
 
 // // Creating the type for our featured product
 // interface Product {
@@ -23,9 +24,9 @@ import VotingButtons from "./voting-buttons";
 //   isFeatured: boolean;
 // }
 
-type Product = InferSelectModel<typeof products>;
+// type Product = InferSelectModel<typeof products>;
 
-export default function ProductCard({ product }: { product: Product }) {
+export default function ProductCard({ product }: { product: ProductType }) {
   const hasVoted = false;
   return (
     <div>
