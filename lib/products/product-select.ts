@@ -10,17 +10,23 @@ export async function getFeaturedProducts() {
     .where(eq(products.status, "approved"))
     .orderBy(desc(products.createdAt));
 }
+export async function getAllApprovedProducts() {
+  return db
+    .select()
+    .from(products)
+    .orderBy(desc(products.voteCount));
+}
 export async function getAllProducts() {
   return db
     .select()
     .from(products)
-    .orderBy(desc(products.voteCount)).limit(8);
+    .orderBy(desc(products.voteCount));
 }
 
 export async function getRecentlyLaunedProduct() {
   await connection(); // this is the api request which will just let us get the products on the runtime.
   await new Promise((r) => setTimeout(r, 3000));
-  const productData = await getAllProducts();
+  const productData = await getAllApprovedProducts();
   const oneWeekAgo = new Date();
   oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
   return productData.filter(
