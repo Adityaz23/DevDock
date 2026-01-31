@@ -33,17 +33,12 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/share" className="hover:text-[#2e1f3a] transition">
-                  Share a Project
+                <Link href="/submit" className="hover:text-[#2e1f3a] transition">
+                  Submit Project
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/features"
-                  className="hover:text-[#2e1f3a] transition"
-                >
-                  Features
-                </Link>
+               
               </li>
             </ul>
           </div>
