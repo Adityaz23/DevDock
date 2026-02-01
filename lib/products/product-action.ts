@@ -10,7 +10,7 @@ import { revalidatePath } from "next/cache";
 
 export const addProductAction = async (
   prevState: FormState,
-  formData: FormData
+  formData: FormData,
 ): Promise<FormState> => {
   try {
     const { userId, orgId } = await auth();
@@ -68,6 +68,9 @@ export const addProductAction = async (
       userId: userId,
     });
     // refresh();
+    revalidatePath("/");
+    revalidatePath("/explore");
+    revalidatePath("/admin");
     return {
       success: true,
       message: "Product submitted successfully! It will be approved shortly!",

@@ -1,44 +1,10 @@
+"use cache"
 import { ArrowUpRightIcon, StarIcon } from "lucide-react";
 import FeaturedHeader from "../common/common-header";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import ProductCard from "../products/products";
 import { getFeaturedProducts } from "@/lib/products/product-select";
-
-// const featured = [
-//     {
-//         id:1,
-//         name: "Parity",
-//         description: "A tool for finding kitty party!",
-//         tags:["AI","NextJS","TailwindCSS"],
-//         isFeatured: true,
-//         votes: 300
-//     },
-//       {
-//         id:2,
-//         name: "Charity",
-//         description: "A website for finding charities to donate!",
-//         tags:["AI","NextJS","TailwindCSS"],
-//         isFeatured: true,
-//         votes: 100
-//     },
-//       {
-//         id:3,
-//         name: "MELLO",
-//         description: "A tool similar to trello!",
-//         tags:["AI","NextJS","TailwindCSS"],
-//         isFeatured: true,
-//         votes: 200
-//     },
-//       {
-//         id:4,
-//         name: "Kitty-Kat",
-//         description: "A website to find friend for your kiity!",
-//         tags:["AI","NextJS","TailwindCSS"],
-//         isFeatured: false,
-//         votes: 600
-//     }
-// ]
 
 export default async function Featured() {
   // fetching the data from the database of drizzle which we literally just generated.
