@@ -1,6 +1,6 @@
 const Admin = () => {
   return (
-    <div>Admin</div>
+    <div>Product.</div>
   )
 }
 
