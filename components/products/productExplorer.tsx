@@ -16,13 +16,11 @@ export default function ProductExplorer({
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredProducts = useMemo(() => {
-    // 1️⃣ Always start from a fresh copy
     let result = [...products];
 
-    // 2️⃣ Apply search FIRST
     if (searchQuery.trim()) {
       result = result.filter((product) =>
-        product.name.toLowerCase().includes(searchQuery.toLowerCase())
+        product.name.toLowerCase().includes(searchQuery.toLowerCase()),
       );
     }
 
@@ -35,7 +33,7 @@ export default function ProductExplorer({
       result = [...result].sort(
         (a, b) =>
           new Date(b.createdAt || "").getTime() -
-          new Date(a.createdAt || "").getTime()
+          new Date(a.createdAt || "").getTime(),
       );
     }
 
@@ -58,20 +56,29 @@ export default function ProductExplorer({
 
         <div className="flex gap-2">
           <Button
-            variant={sortBy === "trending" ? "default" : "outline"}
-            onClick={() => setSortBy("trending")}
-          >
-            <TrendingUpIcon className="size-4 mr-2" />
-            Trending
-          </Button>
+  onClick={() => setSortBy("trending")}
+  className={`transition-all ${
+    sortBy === "trending"
+      ? "bg-linear-to-r from-pink-500 to-fuchsia-500 text-white shadow-md"
+      : "bg-white/90 text-gray-700 border border-gray-200 hover:bg-white"
+  }`}
+>
+  <TrendingUpIcon className="size-4 mr-2" />
+  Trending
+</Button>
 
-          <Button
-            variant={sortBy === "recent" ? "default" : "outline"}
-            onClick={() => setSortBy("recent")}
-          >
-            <ClockIcon className="size-4 mr-2" />
-            Recent
-          </Button>
+<Button
+  onClick={() => setSortBy("recent")}
+  className={`transition-all ${
+    sortBy === "recent"
+      ? "bg-linear-to-r from-pink-500 to-fuchsia-500 text-white shadow-md"
+      : "bg-white/90 text-gray-700 border border-gray-200 hover:bg-white"
+  }`}
+>
+  <ClockIcon className="size-4 mr-2" />
+  Recent
+</Button>
+
         </div>
       </div>
 
