@@ -20,6 +20,102 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Project Strucutre :-
+```
+├── 📁 app
+│   ├── 📁 admin
+│   │   ├── 📄 admin-panel-content.tsx
+│   │   └── 📄 page.tsx
+│   ├── 📁 explore
+│   │   └── 📄 page.tsx
+│   ├── 📁 products
+│   │   ├── 📁 [slug]
+│   │   │   └── 📄 page.tsx
+│   │   └── 📄 page.tsx
+│   ├── 📁 submit
+│   │   └── 📄 page.tsx
+│   ├── 📄 favicon.ico
+│   ├── 🎨 globals.css
+│   ├── 📄 layout.tsx
+│   └── 📄 page.tsx
+├── 📁 components
+│   ├── 📁 admin
+│   │   ├── 📄 admin-product-card.tsx
+│   │   ├── 📄 adminActions.tsx
+│   │   └── 📄 stats-card.tsx
+│   ├── 📁 common
+│   │   ├── 📄 common-header.tsx
+│   │   ├── 📄 custom-user-button.tsx
+│   │   ├── 📄 empty-state.tsx
+│   │   ├── 📄 footer.tsx
+│   │   └── 📄 header.tsx
+│   ├── 📁 forms
+│   │   └── 📄 form-field.tsx
+│   ├── 📁 landing-page
+│   │   ├── 📄 featured.tsx
+│   │   ├── 📄 hero-section.tsx
+│   │   ├── 📄 recently-launched.tsx
+│   │   └── 📄 stats-card.tsx
+│   ├── 📁 products
+│   │   ├── 📄 product-skeleton.tsx
+│   │   ├── 📄 product-submit-form.tsx
+│   │   ├── 📄 productExplorer.tsx
+│   │   ├── 📄 products.tsx
+│   │   └── 📄 voting-buttons.tsx
+│   └── 📁 ui
+│       ├── 📄 badge.tsx
+│       ├── 📄 button.tsx
+│       ├── 📄 card.tsx
+│       ├── 📄 dropdown-menu.tsx
+│       ├── 📄 form.tsx
+│       ├── 📄 input.tsx
+│       ├── 📄 label.tsx
+│       ├── 📄 skeleton.tsx
+│       └── 📄 textarea.tsx
+├── 📁 db
+│   ├── 📄 data.ts
+│   ├── 📄 index.ts
+│   ├── 📄 schema.ts
+│   └── 📄 seed.ts
+├── 📁 drizzle
+│   ├── 📁 meta
+│   │   ├── ⚙️ 0000_snapshot.json
+│   │   ├── ⚙️ 0001_snapshot.json
+│   │   └── ⚙️ _journal.json
+│   ├── 📄 0000_sour_sheva_callister.sql
+│   └── 📄 0001_youthful_brood.sql
+├── 📁 lib
+│   ├── 📁 admin
+│   │   └── 📄 adminAction.tsx
+│   ├── 📁 products
+│   │   ├── 📄 product-action.ts
+│   │   ├── 📄 product-select.ts
+│   │   └── 📄 product-validate.ts
+│   └── 📄 utils.ts
+├── 📁 public
+│   ├── 📄 favicon.ico
+│   ├── 🖼️ file.svg
+│   ├── 🖼️ globe.svg
+│   ├── 🖼️ next.svg
+│   ├── 🖼️ vercel.svg
+│   └── 🖼️ window.svg
+├── 📁 types
+│   └── 📄 index.ts
+├── ⚙️ .gitignore
+├── 📝 README.md
+├── 📄 bun.lock
+├── ⚙️ components.json
+├── 📄 drizzle.config.ts
+├── 📄 eslint.config.mjs
+├── 📄 next.config.ts
+├── ⚙️ package-lock.json
+├── ⚙️ package.json
+├── 📄 postcss.config.mjs
+├── 📄 proxy.ts
+└── ⚙️ tsconfig.json
+```
+---
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
