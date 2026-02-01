@@ -13,20 +13,18 @@ import {
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-// 🚨 VERY IMPORTANT
-// This page MUST be dynamic because products are added at runtime
-export const dynamic = "force-dynamic";
-
 type ProductPageProps = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const product = await getProductBySlug(params.slug);
+  // ✅ REQUIRED IN NEXT 16
+  const { slug } = await params;
 
-  // If product does not exist → 404
+  const product = await getProductBySlug(slug);
+
   if (!product) {
     notFound();
   }
@@ -43,7 +41,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
     submittedBy,
   } = product;
 
-  // ✅ Server-safe date formatting (NO hydration issues)
+  // ✅ Server-safe date formatting
   const createdDate = createdAt
     ? createdAt.toISOString().split("T")[0]
     : "Unknown";
