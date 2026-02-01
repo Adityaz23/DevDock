@@ -62,7 +62,7 @@ export default function Hero() {
               >
                 <Link href="/submit">
                   <WandSparklesIcon className="size-4" />
-                  Share your projects
+                  Share your product.
                 </Link>
               </Button>
               <Button
@@ -72,7 +72,7 @@ export default function Hero() {
                 className="text-base px-8 shadow-lg  bg-rose-200 hover:bg-red-300 hover:text-white"
               >
                 <Link href="/explore">
-                  Explore projects
+                  Explore products.
                   <ArrowRightToLine className="size-4" />
                 </Link>
               </Button>
