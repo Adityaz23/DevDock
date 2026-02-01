@@ -24,6 +24,7 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 ```
 ├── 📁 app
 │   ├── 📁 admin
+│   │   ├── 📄 admin-panel-content.tsx
 │   │   └── 📄 page.tsx
 │   ├── 📁 explore
 │   │   └── 📄 page.tsx
@@ -38,6 +39,10 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 │   ├── 📄 layout.tsx
 │   └── 📄 page.tsx
 ├── 📁 components
+│   ├── 📁 admin
+│   │   ├── 📄 admin-product-card.tsx
+│   │   ├── 📄 adminActions.tsx
+│   │   └── 📄 stats-card.tsx
 │   ├── 📁 common
 │   │   ├── 📄 common-header.tsx
 │   │   ├── 📄 custom-user-button.tsx
@@ -80,6 +85,8 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 │   ├── 📄 0000_sour_sheva_callister.sql
 │   └── 📄 0001_youthful_brood.sql
 ├── 📁 lib
+│   ├── 📁 admin
+│   │   └── 📄 adminAction.tsx
 │   ├── 📁 products
 │   │   ├── 📄 product-action.ts
 │   │   ├── 📄 product-select.ts
@@ -106,10 +113,7 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 ├── 📄 postcss.config.mjs
 ├── 📄 proxy.ts
 └── ⚙️ tsconfig.json
-
-This is still not completed the file struture will need to be updated
 ```
-
 ---
 
 ## Learn More
