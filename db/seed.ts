@@ -1,4 +1,3 @@
-"use cache";
 import "dotenv/config";
 import { drizzle } from "drizzle-orm/neon-http";
 import { neon } from "@neondatabase/serverless";
@@ -18,7 +17,7 @@ async function main() {
 
   // Clear existing data
   await db.delete(products);
-  console.log("Cleared existing data!");
+  console.log("Cleared existing data!");w
 
   // Insert products
   for (const product of allProducts) {

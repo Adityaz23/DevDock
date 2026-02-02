@@ -1,7 +1,7 @@
 "use server";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { productSchema } from "./product-validate";
-import { db } from "@/db/seed";
+import { db } from "@/db/client";
 import { products } from "@/db/schema";
 import z from "zod";
 import { FormState } from "@/types";

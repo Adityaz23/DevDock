@@ -1,5 +1,5 @@
 import { products } from "@/db/schema";
-import { db } from "@/db/seed";
+import { db } from "@/db/client";
 import { desc, eq } from "drizzle-orm";
 import { unstable_noStore as noStore } from "next/cache";
 
