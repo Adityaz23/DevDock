@@ -17,7 +17,7 @@ async function main() {
 
   // Clear existing data
   await db.delete(products);
-  console.log("Cleared existing data!");w
+  console.log("Cleared existing data!");
 
   // Insert products
   for (const product of allProducts) {
