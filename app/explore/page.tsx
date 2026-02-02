@@ -1,4 +1,3 @@
-"use cache";
 import FeaturedHeader from "@/components/common/common-header";
 import ProductExplorer from "@/components/products/productExplorer";
 import { getAllApprovedProducts } from "@/lib/products/product-select";
